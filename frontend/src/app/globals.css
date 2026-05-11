@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  background: #050816;
+  color: white;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #081020;
+  border-right: 1px solid #1d2940;
+  padding: 20px;
+}
+
+.logo {
+  width: 180px;
+  margin-bottom: 24px;
+}
+
+.nav {
+  display: block;
+  padding: 12px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  color: #8ea0c8;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav.active,
+.nav:hover {
+  background: #17213b;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  padding: 28px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+input,
+select {
+  background: #0d1529;
+  border: 1px solid #24324f;
+  border-radius: 12px;
+  color: white;
+  padding: 10px;
+}
+
+.panel {
+  background: #0b1327;
+  border: 1px solid #24324f;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+pre {
+  white-space: pre-wrap;
+  background: #07101f;
+  border: 1px solid #24324f;
+  border-radius: 12px;
+  padding: 16px;
+  line-height: 1.5;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #0b1327;
+  border: 1px solid #24324f;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.card span {
+  display: block;
+  color: #8ea0c8;
+  margin-bottom: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.card b {
+  font-size: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #24324f;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  color: #8ea0c8;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #24324f;
+  padding: 10px 0;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.search input {
+  flex: 1;
+}

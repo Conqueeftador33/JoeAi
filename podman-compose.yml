@@ -1,0 +1,66 @@
+services:
+  db:
+    image: docker.io/library/postgres:16
+    container_name: joeai_db
+    restart: always
+    environment:
+      POSTGRES_DB: joeai
+      POSTGRES_USER: joeai
+      POSTGRES_PASSWORD: joeai_strong_password_change_me
+    volumes:
+      - joeai_pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  ai:
+    build: ./ai
+    container_name: joeai_ai
+    restart: always
+    environment:
+      MODEL_REPO: bartowski/Qwen2.5-1.5B-Instruct-GGUF
+      MODEL_FILE: Qwen2.5-1.5B-Instruct-Q4_K_M.gguf
+      N_CTX: "2048"
+      N_THREADS: "4"
+      N_BATCH: "96"
+    volumes:
+      - joeai_models:/models
+    ports:
+      - "127.0.0.1:8099:8099"
+
+  backend:
+    build: ./backend
+    container_name: joeai_backend
+    restart: always
+    depends_on:
+      - db
+      - ai
+    environment:
+      DATABASE_URL: postgresql+psycopg://joeai:joeai_strong_password_change_me@db:5432/joeai
+      JOEAI_AI_URL: http://ai:8099
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: joeai_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: docker.io/library/nginx:alpine
+    container_name: joeai_nginx
+    restart: always
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+
+volumes:
+  joeai_pgdata:
+  joeai_models:
